@@ -32,6 +32,7 @@ CREATE TABLE `device` (
   `SN` varchar(15) NOT NULL,
   `TAG` mediumtext,
   `TIME` varchar(15) DEFAULT NULL,
+  `Security` tinyint(2) NOT NULL DEFAULT '1',
   `NOTE` mediumtext,
   `N1` mediumtext,
   `N2` mediumtext
@@ -40,9 +41,6 @@ CREATE TABLE `device` (
 --
 -- 转存表中的数据 `device`
 --
-
-INSERT INTO `device` (`ID`, `SN`, `TAG`, `TIME`, `NOTE`, `N1`, `N2`) VALUES
-(0, 'm1cQ1hI6', 'TEST_01', '2021/9/29', '测试物品', '<img width=100% src=\"https://moe-gz-public.oss-cn-guangzhou.aliyuncs.com/I_sys/%E4%BD%A0%E5%A5%BD.jpg\">', NULL);
 
 --
 -- 转储表的索引
@@ -63,7 +61,7 @@ ALTER TABLE `device`
 -- 使用表AUTO_INCREMENT `device`
 --
 ALTER TABLE `device`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
