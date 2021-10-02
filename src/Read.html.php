@@ -19,13 +19,13 @@
 					<br><a id="TIME">TIME: <?php echo $TIME?></a>
 					<?php
 					if (!empty($NOTE)){
-						echo "<div id=\"NOTE_div\" class=\"div_1\" >NOTE: <p id=\"NOTE\" class=\"p_1\">".$NOTE."</p></div>";
+						echo "<div id=\"NOTE_div\" class=\"div_1\" >NOTE: <p id=\"NOTE\" class=\"p_1\">".nl2br($NOTE)."</p></div>";
 					}
 					if (!empty($N1)){
-						echo "<div id=\"N1_div\" class=\"div_1\" >N1: <p id=\"N1\" class=\"p_2\">".$N1."</p></div>";
+						echo "<div id=\"N1_div\" class=\"div_1\" >N1: <p id=\"N1\" class=\"p_2\">".nl2br($N1)."</p></div>";
 					}
 					if (!empty($N2)){
-						echo "<div id=\"N2_div\" class=\"div_1\" >N2: <p id=\"N2\" class=\"p_2\">".$N2."</p></div>";
+						echo "<div id=\"N2_div\" class=\"div_1\" >N2: <p id=\"N2\" class=\"p_2\">".nl2br($N2)."</p></div>";
 					}
 					?>
 				</p>
