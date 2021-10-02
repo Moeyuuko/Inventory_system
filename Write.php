@@ -86,7 +86,7 @@ if(isset($_POST['button'])){
 	$SN_ = "m".$MAXIDadd1.createRandomStr(4);
 	$SN = "'".$SN_."'";
 	
-	$sql = "INSERT INTO `device` (`ID`, `SN`, `TAG`, `TIME`, `NOTE`, `N1`, `N2`) VALUES (NULL, ".$SN.", ".$TAG.", ".$TIME.", ".$NOTE.", ".$N1.", ".$N2.");";
+	$sql = "INSERT INTO `device` (`ID`, `SN`, `TAG`, `TIME`, `Security`, `NOTE`, `N1`, `N2`) VALUES (NULL, ".$SN.", ".$TAG.", ".$TIME.", ".$Security.", ".$NOTE.", ".$N1.", ".$N2.");";
 	db_INSERT($sql);
 	$conn->close();
 	header ( "location:Read.php?key=" . $SN_ );
