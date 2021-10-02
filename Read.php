@@ -52,10 +52,10 @@ if(strlen($SN)<=12){
 						$SN = $row["SN"];
 						$TAG = $row["TAG"];
 						$TIME = $row["TIME"];
+						$N2= $row["N2"]; //N2属于半公开
 						if (!empty ( $_SESSION ['user'] )){
 							$NOTE = $row["NOTE"];
 							$N1 = nl2br($row["N1"]);
-							$N2= $row["N2"];
 						}
 						break;
 					default:

@@ -23,9 +23,9 @@
 						<input type="text" name="TIME" required="required" style='font-size: 5vw; width:95%;' value='<?php echo date("Y/m/d H:i",time());?>'>
 						<p style='margin:0px;'>--NOTE--</p>
 						<textarea name="NOTE" style='font-size: 5vw; width:95%; min-height:30%;'></textarea>
-						<p style='margin:0px;'>--N1--</p>
+						<p style='margin:0px;'>--INFO--</p>
 						<textarea name="N1" style='font-size: 5vw; width:95%; min-height:20%;'></textarea>
-						<p style='margin:0px;'>--N2--</p>
+						<p style='margin:0px;'>--Public--</p>
 						<textarea name="N2" style='font-size: 5vw; width:95%; min-height:20%;'></textarea><br><br>
 						<input type="radio" name="Security" style="zoom:250%"; value="1" checked="true">私密 
 						<input type="radio" name="Security" style="zoom:250%"; value="0">公开 
