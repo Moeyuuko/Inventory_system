@@ -1,6 +1,6 @@
 <html lang="zh-CN">
 	<head>
-		<title>写-库存系统</title>
+		<title>写-萌域库存</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<style>
 			body { font-family: Helvetica, Arial, sans-serif; font-size:16px; color: #000; font-weight:normal;}

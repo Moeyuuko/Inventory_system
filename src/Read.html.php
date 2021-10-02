@@ -1,6 +1,6 @@
 <html lang="zh-CN">
 	<head>
-		<title>信息-库存系统</title>
+		<title>信息-萌域库存</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<style>
 			body { font-family: Helvetica, Arial, sans-serif; font-size:16px; color: #000; font-weight:normal;}
@@ -11,11 +11,11 @@
 	</head>
 	<body>
 		<div style='text-align: center;'>
-			<h1 id=title style='font-size: 5vw;'>库存信息</h1>
+			<h1 id=title style='font-size: 5vw;'>萌域库存</h1>
 			<div style='border: 5px solid;'>
 				<p style='font-size: 5vw; text-align: left; margin-left: 5%; width:95%;'>
 					<a id="SN">SN: <?php echo $SN?></a>
-					<br><a id="TAG">TAG <?php echo $TAG?></a>
+					<br><a id="TAG">TAG: <?php echo $TAG?></a>
 					<br><a id="TIME">TIME: <?php echo $TIME?></a>
 					<?php
 					if (!empty($NOTE)){

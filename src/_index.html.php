@@ -1,6 +1,6 @@
 <html lang="zh-CN">
 	<head>
-		<title>搜索-库存系统</title>
+		<title>搜索-萌域库存</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<style>
 			body { 
@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<div style='text-align: center; height: 95%;'>
-			<h1 id=title style='font-size: 5vw;'>库存系统</h1>
+			<h1 id=title style='font-size: 5vw;'>萌域库存</h1>
 			<div style='border: 5px solid;'>
 				<p style='font-size: 5vw;'>
 					<form name="input" action="Read.php" method="get" style='font-size: 5vw; text-align: left; width:100%;'>
