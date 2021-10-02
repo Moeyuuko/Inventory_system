@@ -33,6 +33,17 @@ function db_query_row($sql){
 function db_INSERT($sql){
 	global $conn;
 	if ($conn->query($sql) === TRUE) {
+		$result = $conn->query("SELECT LAST_INSERT_ID();");
+		$row = $result->fetch_assoc();
+		return $row["LAST_INSERT_ID()"];
+	} else {
+		die ("Error: " . $sql . "<br>" . $conn->error);
+	}
+}
+
+function db_exec($sql){
+	global $conn;
+	if ($conn->query($sql) === TRUE) {
 		return TRUE;
 	} else {
 		die ("Error: " . $sql . "<br>" . $conn->error);
@@ -82,14 +93,17 @@ if(isset($_POST['button'])){
 	$N1 = Give_post("N1");
 	$N2 = Give_post("N2");
 
-	$MAXIDadd1 = db_MAXID() + 1;
-	$SN_ = "m".$MAXIDadd1.createRandomStr(4);
-	$SN = "'".$SN_."'";
+	//$MAXIDadd1 = db_MAXID() + 1;
+	//$SN_ = "m".$MAXIDadd1.createRandomStr(4);
+	$SN = "'".createRandomStr(6)."'";
 	
 	$sql = "INSERT INTO `device` (`ID`, `SN`, `TAG`, `TIME`, `Security`, `NOTE`, `N1`, `N2`) VALUES (NULL, ".$SN.", ".$TAG.", ".$TIME.", ".$Security.", ".$NOTE.", ".$N1.", ".$N2.");";
-	db_INSERT($sql);
+	$LAST_ID = db_INSERT($sql);
+	$SN = "m".$LAST_ID.createRandomStr(4);
+	$sql = "UPDATE `device` SET `SN` = '".$SN."' WHERE `device`.`ID` = $LAST_ID";
+	db_exec($sql);
 	$conn->close();
-	header ( "location:Read.php?key=" . $SN_ );
+	header ( "location:Read.php?key=" . $SN );
 }else{
 	include('src/Write.html.php');
 	
@@ -97,6 +111,6 @@ if(isset($_POST['button'])){
 
 
 	//INSERT INTO `device` (`ID`, `SN`, `TAG`, `TIME`, `NOTE`, `N1`, `N2`) VALUES (NULL, 'SNSNSN', 'TAGTAG', 'TTT', 'NNNN', '1111', '2222');
-	//SELECT LAST_INSERT_ID();
+	//SELECT LAST_INSERT_ID(); LAST_INSERT_ID()
 	//UPDATE `device` SET `TAG` = '标签机' WHERE `device`.`ID` = 7
 ?>

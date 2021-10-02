@@ -66,7 +66,10 @@ if(strlen($SN)<=12){
 				include ('src/Read.html.php');
 			}
 	} else {
-		echo "<p style='font-size: 9vw; text-align: left; width:100%;'>Not Found.</p>";
+		$SN = "查询不到";
+		$TAG = "Not Found.";
+		$TIME = "(Ｔ▽Ｔ)";
+		include ('src/Read.html.php');
 	}
 } else {
 	echo "<p style='font-size: 9vw; text-align: left; width:100%;'>SN too lonnnnnng.</p>";
