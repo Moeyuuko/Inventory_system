@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `device` (
-  `ID` int(11) NOT NULL,
-  `SN` varchar(15) NOT NULL,
+  `ID` int(50) NOT NULL,
+  `SN` varchar(255) NOT NULL,
   `TAG` mediumtext,
-  `TIME` varchar(15) DEFAULT NULL,
+  `TIME` varchar(255) DEFAULT NULL,
   `Security` tinyint(2) NOT NULL DEFAULT '1',
   `NOTE` mediumtext,
   `N1` mediumtext,
