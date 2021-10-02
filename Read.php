@@ -1,88 +1,75 @@
 <?php
-	foreach($_GET as $key=>$val) {            // read get request from web
-		$SN = $val;
-	}
-//$servername = "";                //connect db
-//$username = "";
-//$password = "*";
-//$dbname = "";
-include(".key.php");
+session_start();
+foreach($_GET as $key=>$val) {            // read get request from web
+	$SN = $val;
+}
+
+include(".Config.php");
+include("src/login_info.php");
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $db_username_Readonly, $db_password_Readonly, $dbname);
 // Check connection
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
-$SN = mysqli_real_escape_string($conn,$SN);
-$sql = "SELECT * FROM `device` WHERE `SN` = '$SN'";
-//echo ($sql."<br>".strlen($SN)."<br>");
 mysqli_query($conn, 'set names utf8');
-if(strlen($SN)<=12){
-	if(!mysqli_query($conn, $sql))
-	{
-		die('Error : ' . mysqli_error($conn));
-	}
-	$result = $conn->query($sql);
-	if ($result->num_rows > 0) {
-		// output db
-			while($row = $result->fetch_assoc()) {
-				$TAG = $row["TAG"];
-				$TIME = $row["TIME"];
-				$NOTE = $row["NOTE"];
-				$N1 = $row["N1"];
-				$N2= $row["N2"];
-				header('Content-Type:text/html; charset=UTF-8; lang=zh-CN;');
-				echo"<html lang=\"zh-CN\"><body>";
-				echo"<div style='text-align: center'>";
-				echo"<h1>";
-				print ("库存系统");
-				echo"</h1>";
-				echo"</br>";
-				echo"<div style='border: 5px solid;'>";
-				echo"<p style='font-size: 5vw; text-align: left; margin-left: 10%; width:80%;'>";
-				print ("SN：".$SN);
-				echo"</br>";
-				print ("TAG：".$TAG);
-				echo"</br>";
-				if($TIME != NULL){
-					print ("Date：".$TIME);
-				}else{
-					print ("Date：Unknow");
-				}
 
-				if($NOTE != NULL){
-					echo"</br>";
-					print ("INFO：");
-					echo"<p style='font-size: 4vw; text-align: left; margin-left: 10%; width:80%; height: 30%; border: 5px inset;'>";
-					print ($NOTE);
-					echo"</p>";
-				}else{
+if(strlen($SN)<=12){
+	$SN = mysqli_real_escape_string($conn,$SN);
+	$sql = "SELECT * FROM `device` WHERE `SN` = '$SN'";
+	//echo ($sql."<br>".strlen($SN)."<br>");
+	if(!mysqli_query($conn, $sql)){die('Error : ' . mysqli_error($conn));}
+	$result = $conn->query($sql);
+	$conn->close();
+
+	if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+				$Security = $row["Security"]; //安全等级 0公开 1私密 2半公开隐藏NOTE,N1,N2
+				
+				switch ($Security){
+					case 0:
+						$SN = $row["SN"];
+						$TAG = $row["TAG"];
+						$TIME = $row["TIME"];
+						$NOTE = $row["NOTE"];
+						$N1 = $row["N1"];
+						$N2= $row["N2"];
+						break;
+					case 1:
+						if (empty ( $_SESSION ['user'] )){
+							header ( "location:login.php?req_url=" . $_SERVER ['REQUEST_URI'] );
+							exit();
+						}
+						$SN = $row["SN"];
+						$TAG = $row["TAG"];
+						$TIME = $row["TIME"];
+						$NOTE = $row["NOTE"];
+						$N1 = nl2br($row["N1"]);
+						$N2= $row["N2"];
+						break;
+					case 2:
+						$SN = $row["SN"];
+						$TAG = $row["TAG"];
+						$TIME = $row["TIME"];
+						if (!empty ( $_SESSION ['user'] )){
+							$NOTE = $row["NOTE"];
+							$N1 = nl2br($row["N1"]);
+							$N2= $row["N2"];
+						}
+						break;
+					default:
+						$SN = "安全级别错误";
+						$TAG = "安全级别错误";
+						$TIME = "安全级别错误";
 				}
-				if($N1 != NULL){
-					echo"</br>";
-					echo"<p style='font-size: 3vw; text-align: left; margin-left: 10%; width:80%; border: 5px inset;'>";
-					print ($N1);
-					echo"</p>";
-				}else{
-				}
-				if($N2 != NULL){
-					echo"</br>";
-					echo"<p style='font-size: 3vw; text-align: left; margin-left: 10%; width:80%; border: 5px inset;'>";
-					print ($N2);
-					echo"</p>";
-				}else{
-				}
-			echo"</p>";
-			echo"</div>";
-			echo"</div>";
-			echo"</body></html>";
+				include ('src/Read.html.php');
 			}
 	} else {
-		echo "Not Found";
+		echo "<p style='font-size: 9vw; text-align: left; width:100%;'>Not Found.</p>";
 	}
 } else {
-	echo "SN too lonnnnnng";
+	echo "<p style='font-size: 9vw; text-align: left; width:100%;'>SN too lonnnnnng.</p>";
 }
-$conn->close();
+
 ?>
