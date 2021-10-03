@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2021-10-04 02:11:40
+-- 生成日期： 2021-10-04 02:30:20
 -- 服务器版本： 5.7.34
 -- PHP 版本： 7.3.27-1~deb10u1
 
@@ -62,7 +62,8 @@ CREATE TABLE `Error_login` (
 CREATE TABLE `Users` (
   `ID` bigint(11) NOT NULL,
   `User` varchar(60) NOT NULL,
-  `Password` varchar(255) NOT NULL
+  `Password` varchar(255) NOT NULL,
+  `Tag` varchar(4) NOT NULL DEFAULT 'm'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
