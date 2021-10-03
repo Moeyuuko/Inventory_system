@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2021-10-04 02:04:50
+-- 生成日期： 2021-10-04 02:11:40
 -- 服务器版本： 5.7.34
 -- PHP 版本： 7.3.27-1~deb10u1
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `device` (
-  `ID` int(11) NOT NULL,
+  `ID` int(50) NOT NULL,
   `SN` varchar(255) NOT NULL,
   `TAG` mediumtext,
   `TIME` varchar(255) DEFAULT NULL,
@@ -97,7 +97,7 @@ ALTER TABLE `Users`
 -- 使用表AUTO_INCREMENT `device`
 --
 ALTER TABLE `device`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用表AUTO_INCREMENT `Error_login`
