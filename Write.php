@@ -26,7 +26,7 @@ function db_query_row($sql){
 		$row = $result->fetch_assoc();
 		return $row;
 	}else{
-		return TRUE;
+		return FALSE;
 	}
 }
 
@@ -96,10 +96,11 @@ if(isset($_POST['button'])){
 	//$MAXIDadd1 = db_MAXID() + 1;
 	//$SN_ = "m".$MAXIDadd1.createRandomStr(4);
 	$SN = "'".createRandomStr(6)."'";
+	$User_ID = "'".$_SESSION['User_ID']."'";
 	
-	$sql = "INSERT INTO `device` (`ID`, `SN`, `TAG`, `TIME`, `Security`, `NOTE`, `N1`, `N2`) VALUES (NULL, ".$SN.", ".$TAG.", ".$TIME.", ".$Security.", ".$NOTE.", ".$N1.", ".$N2.");";
+	$sql = "INSERT INTO `device` (`ID`, `SN`, `TAG`, `TIME`, `User_ID`, `Security`, `NOTE`, `N1`, `N2`) VALUES (NULL, ".$SN.", ".$TAG.", ".$TIME.", ".$User_ID.", ".$Security.", ".$NOTE.", ".$N1.", ".$N2.");";
 	$LAST_ID = db_INSERT($sql);
-	$SN = "m".$LAST_ID.createRandomStr(4);
+	$SN = $_SESSION['User_Tag'].$LAST_ID.createRandomStr(4);
 	$sql = "UPDATE `device` SET `SN` = '".$SN."' WHERE `device`.`ID` = $LAST_ID";
 	db_exec($sql);
 	$conn->close();

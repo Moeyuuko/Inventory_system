@@ -1,8 +1,22 @@
 <?php
 include(".Config.php");
 
+function db_query_row($sql){
+	global $conn;
+	if(!mysqli_query($conn, $sql)){
+		die('Error : ' . mysqli_error($conn));
+	}
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		$row = $result->fetch_assoc();
+		return $row;
+	}else{
+		return FALSE;
+	}
+}
+
 function Check($username,$password){
-	global $servername, $db_username_Readonly, $db_password_Readonly, $dbname;
+	global $servername, $db_username_Readonly, $db_password_Readonly, $dbname, $conn;
 	// Create connection
 	$conn = new mysqli($servername, $db_username_Readonly, $db_password_Readonly, $dbname);
 	// Check connection
@@ -11,28 +25,22 @@ function Check($username,$password){
 	}
 	mysqli_query($conn, 'set names utf8');
 
-
 	$password = sha1(md5($password));
 	$username = mysqli_real_escape_string($conn,$username);
 	$sql = "SELECT *  FROM `Users` WHERE `User` = '" . $username . "' AND `Password` = '" . $password . "'";
-
-	if(!mysqli_query($conn, $sql))
-	{
-		die('Error : ' . mysqli_error($conn));
-	}
-	$result = $conn->query($sql);
+	
+	$row = db_query_row($sql);
 	$conn->close();
-	if ($result->num_rows > 0) {
-		return TRUE;
-	} else {
-		return FALSE;
-	}
+	return $row;
 }
 
 function login($username,$password,$remember){
-	if(Check($username,$password)){
+	$row = Check($username,$password);
+	if($row != FALSE){
 		global $ROOT_DIR;
-		$_SESSION['user'] = $username;
+		$_SESSION['user'] = $row["User"]; //SESSION记录用户信息
+		$_SESSION['User_ID'] = $row["ID"];
+		$_SESSION['User_Tag'] = $row["Tag"];
 		if ($remember>0){
 			setcookie ( "username", $username, time () + 3600 * 24 * 365 );
 			setcookie ( "password", $password, time () + 3600 * 24 * 365 );
