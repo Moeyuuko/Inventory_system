@@ -57,6 +57,7 @@ function login($username,$password,$remember){
 			setcookie ( "password", null, time () - 3600 * 24 * 365 );
 		}
 		echo "<p style='font-size: 20vw; text-align: left; width:100%;'>Error.</p><br>";
+		http_response_code(401);
 	}
 }
 ?>
