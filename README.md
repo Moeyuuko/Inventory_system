@@ -1,4 +1,5 @@
 # 库存系统
+基于: [FKUN](https://blog.fkun.tech/) 的 [数字化资产管理](https://blog.fkun.tech/archives/1504/)  
 生成二维码 贴在设备上 一扫出信息  
 ![QR](Demo_images/4.jpg)  
 ## 使用
@@ -14,4 +15,5 @@
 ![主页](Demo_images/0.jpg)
 ![主页](Demo_images/3.jpg)
 ![主页](Demo_images/1.jpg)
-![主页](Demo_images/2.jpg)
+![主页](Demo_images/2.jpg)  
+哈哈哈 起了个很二次元的名字
