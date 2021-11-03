@@ -34,7 +34,7 @@
 			</div>
 			<?php echo $login_info?>
 		</div>
-		<footer><a style='color:#000000; position:absolute; font-size: 2vw;' href="" target="_blank" >©2021 Moeyuuko. All rights reserved.</a></footer>
+		<footer><a style='color:#000000; position:absolute; font-size: 2vw;' href="https://github.com/Moeyuuko" target="_blank" >©2021 Moeyuuko. All rights reserved.</a></footer>
 		<script>
 			function checkForm() {
 				var pwd = document.getElementById('password');

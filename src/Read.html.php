@@ -32,6 +32,6 @@
 			</div>
 			<a id="login_info" class="login_info"><?php echo login_info();?></a>
 		</div>
-		<footer><br><br><a style='color:#000000; position:absolute; font-size: 2vw;' href="" target="_blank" >©2021 Moeyuuko. All rights reserved.</a></footer>
+		<footer><br><br><a style='color:#000000; position:absolute; font-size: 2vw;' href="https://github.com/Moeyuuko" target="_blank" >©2021 Moeyuuko. All rights reserved.</a></footer>
 	</body>
 </html>
