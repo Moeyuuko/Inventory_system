@@ -78,7 +78,7 @@ function Give_post($postname){
 }
 
 class json_deta_c {
-	public $Security = "";
+	public $SN = "";
 }
 //==这才刚刚开始===============================//
 
