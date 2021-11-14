@@ -41,29 +41,36 @@ if(strlen($SN)<=12 && strlen($SN)>0){
 						$json_deta->TAG = $TAG = $row["TAG"];
 						$json_deta->TIME = $TIME = $row["TIME"];
 						$json_deta->NOTE = $NOTE = $row["NOTE"];
-						$json_deta->N1 = $N1 = $row["N1"];
+						$json_deta->N1 = $row["N1"];
+						$N1 = nl2br($row["N1"]);
 						$json_deta->N2 = $N2= $row["N2"];
 						break;
 					case 1:
 						if (empty ( $_SESSION ['user'] )){
-							header ( "location:login.php?req_url=" . $_SERVER ['REQUEST_URI'] );
+							if($_GET['type']=='json'){  #json输出
+								header('content-type:application/json;charset=utf8');
+								echo json_encode($json_deta, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+							}else{
+								header ( "location:login.php?req_url=" . $_SERVER ['REQUEST_URI'] );
+							}
 							exit();
 						}
-						$SN = $row["SN"];
-						$TAG = $row["TAG"];
-						$TIME = $row["TIME"];
-						$NOTE = $row["NOTE"];
+						$json_deta->SN = $SN = $row["SN"];
+						$json_deta->TAG = $TAG = $row["TAG"];
+						$json_deta->TIME = $TIME = $row["TIME"];
+						$json_deta->NOTE = $NOTE = $row["NOTE"];
+						$json_deta->N1 = $row["N1"];
 						$N1 = nl2br($row["N1"]);
-						$N2= $row["N2"];
+						$json_deta->N2 = $N2= $row["N2"];
 						break;
 					case 2:
-						$SN = $row["SN"];
-						$TAG = $row["TAG"];
-						$TIME = $row["TIME"];
-						$N2= $row["N2"]; //N2属于半公开
+						$json_deta->SN = $SN = $row["SN"];
+						$json_deta->TAG = $TAG = $row["TAG"];
+						$json_deta->TIME = $TIME = $row["TIME"];
+						$json_deta->N2 = $N2= $row["N2"]; //N2属于半公开
 						if (!empty ( $_SESSION ['user'] )){
-							$NOTE = $row["NOTE"];
-							$N1 = nl2br($row["N1"]);
+							$json_deta->NOTE = $NOTE = $row["NOTE"];
+							$json_deta->N1 = $row["N1"];
 						}
 						break;
 					default:
