@@ -77,9 +77,6 @@ function Give_post($postname){
 	}
 }
 
-class json_deta_c {
-	public $SN = "";
-}
 //==这才刚刚开始===============================//
 
 if(isset($_POST['button'])){

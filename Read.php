@@ -12,16 +12,6 @@ if ($conn->connect_error) {
 }
 mysqli_query($conn, 'set names utf8');
 
-class json_deta_c {
-		public $Security = "";
-		public $SN = "";
-		public $TAG  = "";
-		public $TIME = "";
-		public $NOTE = "";
-		public $N1 = "";
-		public $N2 = "";
-	}
-
 $SN = $_GET['key'];
 if(strlen($SN)<=12 && strlen($SN)>0){
 	$SN = mysqli_real_escape_string($conn,$SN);
