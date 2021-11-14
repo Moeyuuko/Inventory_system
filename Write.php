@@ -77,6 +77,9 @@ function Give_post($postname){
 	}
 }
 
+class json_deta_c {
+	public $Security = "";
+}
 //==这才刚刚开始===============================//
 
 if(isset($_POST['button'])){
@@ -104,7 +107,13 @@ if(isset($_POST['button'])){
 	$sql = "UPDATE `device` SET `SN` = '".$SN."' WHERE `device`.`ID` = $LAST_ID";
 	db_exec($sql);
 	$conn->close();
-	header ( "location:Read.php?key=" . $SN );
+	if($_GET['type']=='json'){  #json输出
+		$json_deta->SN = $SN;
+		header('content-type:application/json;charset=utf8');
+		echo json_encode($json_deta, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+	}else{
+		header ( "location:Read.php?key=" . $SN );
+	}
 }else{
 	include('src/Write.html.php');
 	
