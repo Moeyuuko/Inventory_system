@@ -50,6 +50,7 @@ function login($username,$password,$remember){
 		} else {
 			header ( "location:" . $ROOT_DIR );
 		}
+		header('username:'.$_SESSION['user']);  #header返回用户名
 	}else{
 		if (! empty ( $_COOKIE ['username'] ) || ! empty ( $_COOKIE ['password'] )) 
 		{
