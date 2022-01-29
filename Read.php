@@ -31,8 +31,7 @@ if(strlen($SN)<=12 && strlen($SN)>0){
 						$json_deta->TAG = $TAG = $row["TAG"];
 						$json_deta->TIME = $TIME = $row["TIME"];
 						$json_deta->NOTE = $NOTE = $row["NOTE"];
-						$json_deta->N1 = $row["N1"];
-						$N1 = nl2br($row["N1"]);
+						$json_deta->N1 = $N1 = $row["N1"];
 						$json_deta->N2 = $N2= $row["N2"];
 						break;
 					case 1:
@@ -49,8 +48,7 @@ if(strlen($SN)<=12 && strlen($SN)>0){
 						$json_deta->TAG = $TAG = $row["TAG"];
 						$json_deta->TIME = $TIME = $row["TIME"];
 						$json_deta->NOTE = $NOTE = $row["NOTE"];
-						$json_deta->N1 = $row["N1"];
-						$N1 = nl2br($row["N1"]);
+						$json_deta->N1 = $N1 = $row["N1"];
 						$json_deta->N2 = $N2= $row["N2"];
 						break;
 					case 2:
