@@ -60,7 +60,7 @@ if(strlen($SN)<=12 && strlen($SN)>0){
 						$json_deta->N2 = $N2= $row["N2"]; //N2属于半公开
 						if (!empty ( $_SESSION ['user'] )){
 							$json_deta->NOTE = $NOTE = $row["NOTE"];
-							$json_deta->N1 = $row["N1"];
+							$json_deta->N1 = $N1 = $row["N1"];
 						}
 						break;
 					default:
